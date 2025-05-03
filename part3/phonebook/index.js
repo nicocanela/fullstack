@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+app.use(express.json())
+
 let persons =
 [
     { 
@@ -53,8 +55,41 @@ app.delete('/api/persons/:id', (request, response) => {
 
     response.status(204).end()
 })
+
+app.post('/api/persons', (request, response) => {
+    // console.log(request.body)
+    const body = request.body
+
+    if (!body.name) {
+        return response.status(400).json({
+            error: 'falta nombre'
+        })
+    
+    }
+
+    const id = generateId()
+
+    const person = {
+        name: body.name,
+        number: body.number,
+        id: id
+    }
+
+    persons = persons.concat(person)
+
+    response.json(person)
+
+})
+
+const generateId = () => {
+    const max = 1000000
+    const id = Math.floor(Math.random() * max)
+
+    return id
+}
   
 const PORT = 3001
 app.listen(PORT, () => {
+    console.log(generateId())
     console.log(`server listening on port ${PORT}`)
 })
