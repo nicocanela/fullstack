@@ -67,6 +67,18 @@ app.post('/api/persons', (request, response) => {
     
     }
 
+    if (!body.number) {
+        return response.status(400).json({
+            error: 'falta número'
+        })
+    }
+
+    if (persons.find(p => p.name === body.name)) {
+        return response.status(400).json({
+            error: 'ya existe'
+        })
+    }
+
     const id = generateId()
 
     const person = {
