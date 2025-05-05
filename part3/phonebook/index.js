@@ -1,6 +1,19 @@
 const express = require('express')
+const morgan = require('morgan')
+// const cors = require('cors')
 const app = express()
 
+// app,use(cors())
+
+morgan.token('fullstack', function (req, res) {
+    if (req.method === 'POST') {
+        return JSON.stringify(req.body)
+    } else {
+        return ' '
+    }
+})
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :fullstack'))
 app.use(express.json())
 
 let persons =
@@ -97,11 +110,10 @@ const generateId = () => {
     const max = 1000000
     const id = Math.floor(Math.random() * max)
 
-    return id
+    return String(id)
 }
   
 const PORT = 3001
 app.listen(PORT, () => {
-    console.log(generateId())
     console.log(`server listening on port ${PORT}`)
 })
