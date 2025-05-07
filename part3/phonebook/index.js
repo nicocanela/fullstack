@@ -1,9 +1,9 @@
 const express = require('express')
 const morgan = require('morgan')
-// const cors = require('cors')
+const cors = require('cors')
 const app = express()
 
-// app,use(cors())
+app.use(cors())
 
 morgan.token('fullstack', function (req, res) {
     if (req.method === 'POST') {
@@ -65,8 +65,7 @@ app.get('/api/persons/:id', (request, response) => {
 app.delete('/api/persons/:id', (request, response) => {
     const id = request.params.id
     persons = persons.filter(p => p.id !== id)
-
-    response.status(204).end()
+    response.status(204).json()
 })
 
 app.post('/api/persons', (request, response) => {
@@ -113,7 +112,7 @@ const generateId = () => {
     return String(id)
 }
   
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`server listening on port ${PORT}`)
 })
