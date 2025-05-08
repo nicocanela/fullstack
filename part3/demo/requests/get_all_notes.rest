@@ -1,1 +1,13 @@
 GET http://localhost:3001/api/notes
+
+###
+DELETE http://localhost:3001/api/notes/681bbd3bf84b8947e3fa1be4
+
+###
+PUT  http://localhost:3001/api/notes/681bbd6e3d5873fabb6f5750
+Content-Type: application/json
+
+{
+    "content": "hola",
+    "important": false
+}

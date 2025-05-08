@@ -20,7 +20,7 @@ const noteSchema = new mongoose.Schema({
 
 const Note = mongoose.model('Note', noteSchema)
 
-Note.find({}).then( result => {
+Note.find({}).then(result => {
     result.forEach(note => {
         console.log(note)
     })
