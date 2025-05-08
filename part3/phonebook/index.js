@@ -24,10 +24,11 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/info', (request, response) => {
-    console.log(Date())
-    response.send(
-        `<p>Phonebook has ${persons.length} numbers</p><p>${Date()}</p>`
-    )
+    Person.find({}).then(people => {
+        response.send(
+            `<p>Phonebook has ${people.length} numbers</p><p>${Date()}</p>`
+        )
+    })
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
