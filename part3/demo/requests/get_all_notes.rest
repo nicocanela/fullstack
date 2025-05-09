@@ -1,7 +1,17 @@
+### eeee
 GET http://localhost:3001/api/notes
 
 ###
 DELETE http://localhost:3001/api/notes/681bbd3bf84b8947e3fa1be4
+
+###
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content": "pop",
+    "important": true
+}
 
 ###
 PUT  http://localhost:3001/api/notes/681bbd6e3d5873fabb6f5750

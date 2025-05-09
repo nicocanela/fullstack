@@ -35,6 +35,7 @@ const App = () => {
             }, 5000)
           })
           .catch(error => {
+            console.log(error)
             setMessage({text: `errorrrrr ${person.name} ya fue borraddooooo`, type: 'failure'})
             setTimeout(() => {
               setMessage({text: null, type:null})
@@ -58,6 +59,13 @@ const App = () => {
           }, 5000)
           setNewName('')
           setNewNumber('')
+        })
+        .catch(error => {
+          console.log(error)
+          setMessage({ text: `${error.response.data.error}`, type: 'failure' })
+          setTimeout(() => {
+            setMessage({ text: null, type: null })
+          }, 5000)
         })
     }    
   }
