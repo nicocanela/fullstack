@@ -1,0 +1,13 @@
+###
+GET http://localhost:3003/api/blogs
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "Popina y los demás",
+  "author": "Popina",
+  "url": "http://popi.cl",
+  "likes": 10
+}
